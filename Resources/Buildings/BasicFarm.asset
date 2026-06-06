@@ -15,13 +15,12 @@ MonoBehaviour:
   buildingName: BasicFarm
   landCost: 1
   matterCost: 100
-  peopleCost: 1
+  buildCosts: []
+  peopleCost: 10
   housingCapacity: 0
   productionRates:
   - resource: {fileID: 11400000, guid: 27b732a9ea889b445b6b3dec042c819d, type: 2}
     amountPerTick: 10
   - resource: {fileID: 11400000, guid: 9566f9c5fa027884483a48b3b9fd6d47, type: 2}
     amountPerTick: -2
-  unlockConditions:
-  - resource: {fileID: 11400000, guid: 2c01154bad0aef746bc9449fdad5c958, type: 2}
-    threshold: 1000
+  unlockConditions: []

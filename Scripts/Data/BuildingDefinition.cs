@@ -47,4 +47,6 @@ public class BuildingDefinition : ScriptableObject
     public UnlockCondition[] unlockConditions;
 
     public bool IsUnlockedFromStart => unlockConditions == null || unlockConditions.Length == 0;
+    public Color textColor = Color.white;
+    public int sortOrder = 0; // For UI sorting. Sorting within orders is alphabetical
 }

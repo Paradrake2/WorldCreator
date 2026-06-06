@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceName: People
   resourceType: 0
-  startingAmount: 10
+  startingAmount: 50
   cap: -1

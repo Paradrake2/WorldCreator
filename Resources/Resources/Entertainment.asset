@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28aeab2c86919ff4a91163612057be78, type: 3}
   m_Name: Entertainment
   m_EditorClassIdentifier: 
-  resourceName: 
-  resourceType: 0
+  resourceName: Entertainment
+  resourceType: 2
   startingAmount: 0
   cap: -1

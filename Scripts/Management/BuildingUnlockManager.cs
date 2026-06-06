@@ -82,4 +82,6 @@ public class BuildingUnlockManager : MonoBehaviour
         _unlocked.Add(building);
         OnBuildingUnlocked?.Invoke(building);
     }
+    public IEnumerable<BuildingDefinition> GetUnlockedBuildings() => _unlocked;
+    public IEnumerable<BuildingDefinition> GetLockedBuildings() => _locked;
 }

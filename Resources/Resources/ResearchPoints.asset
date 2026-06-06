@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28aeab2c86919ff4a91163612057be78, type: 3}
   m_Name: ResearchPoints
   m_EditorClassIdentifier: 
-  resourceName: 
+  resourceName: Research Points
   resourceType: 0
   startingAmount: 0
   cap: -1

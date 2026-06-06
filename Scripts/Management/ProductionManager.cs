@@ -6,6 +6,7 @@ public class ProductionManager : MonoBehaviour
 {
     public event Action<ResourceDefinition, float> OnResourceChanged;
     public event Action<float> OnProductivityChanged;
+    public event Action<bool> OnProductionHaltedChanged;
 
     [SerializeField] private BuildingManager buildingManager;
     [SerializeField] private float tickInterval = 5f;
@@ -16,12 +17,22 @@ public class ProductionManager : MonoBehaviour
     [Tooltip("How many people are lost per tick for each essential resource at zero.")]
     [SerializeField] private float populationLossPerEssentialDeficit = 1f;
 
+    [Header("Per-Person Consumption")]
+    [Tooltip("Food consumed per person per tick.")]
+    [SerializeField] private ResourceDefinition foodResource;
+    [SerializeField] private float foodPerPersonPerTick = 0.1f;
+    [Tooltip("Water consumed per person per tick.")]
+    [SerializeField] private ResourceDefinition waterResource;
+    [SerializeField] private float waterPerPersonPerTick = 0.1f;
+
     [Header("Productivity")]
     [Tooltip("How much productivity shifts per tick when a Productivity-type resource is in surplus or deficit.")]
     [SerializeField] private float productivityShiftPerTick = 0.05f;
     private const float ProductivityMin = 0.5f;
     private const float ProductivityMax = 1.5f;
     private float _productivity = 1f;
+    private bool _productivityEnabled = false;
+    private bool _productionHalted = false;
 
     private readonly Dictionary<ResourceDefinition, float> _resources = new();
     private float _timer = 0f;
@@ -29,6 +40,13 @@ public class ProductionManager : MonoBehaviour
 
     public float Productivity => _productivity;
     public int PopulationCap => _populationCap;
+    public bool ProductivityEnabled => _productivityEnabled;
+    public bool IsProductionHalted => _productionHalted;
+
+    public void EnableProductivity()
+    {
+        _productivityEnabled = true;
+    }
 
     void Start()
     {
@@ -100,50 +118,68 @@ public class ProductionManager : MonoBehaviour
             ? Mathf.Clamp01(currentPeople / totalPeopleRequired)
             : 1f;
 
-        // Run each building.
-        foreach (var (building, count) in buildingManager.Buildings)
+        // If staffing drops to 50%, halt all building production until fully staffed.
+        bool nowHalted = staffingRatio <= ProductivityMin;
+        if (nowHalted != _productionHalted)
         {
-            if (count <= 0) continue;
+            _productionHalted = nowHalted;
+            OnProductionHaltedChanged?.Invoke(_productionHalted);
+        }
 
-            // Check consumption can be met (consumption is not affected by productivity or staffing).
-            bool canRun = true;
-            foreach (var rate in building.productionRates)
+        // Run each building only when production is not halted.
+        if (!_productionHalted)
+        {
+            foreach (var (building, count) in buildingManager.Buildings)
             {
-                if (rate.amountPerTick >= 0f) continue;
-                _resources.TryGetValue(rate.resource, out float have);
-                if (have < -rate.amountPerTick * count)
+                if (count <= 0) continue;
+
+                // Check consumption can be met (consumption is not affected by productivity or staffing).
+                bool canRun = true;
+                foreach (var rate in building.productionRates)
                 {
-                    canRun = false;
-                    break;
+                    if (rate.amountPerTick >= 0f) continue;
+                    _resources.TryGetValue(rate.resource, out float have);
+                    if (have < -rate.amountPerTick * count)
+                    {
+                        canRun = false;
+                        break;
+                    }
                 }
-            }
-            if (!canRun) continue;
+                if (!canRun) continue;
 
-            foreach (var rate in building.productionRates)
-            {
-                if (rate.resource == null) continue;
-                _resources.TryGetValue(rate.resource, out float current);
+                foreach (var rate in building.productionRates)
+                {
+                    if (rate.resource == null) continue;
+                    _resources.TryGetValue(rate.resource, out float current);
 
-                float delta;
-                if (rate.amountPerTick > 0f)
-                    // Production is scaled by both staffing and productivity.
-                    delta = rate.amountPerTick * count * staffingRatio * _productivity;
-                else
-                    // Consumption is always full — buildings still consume even when understaffed.
-                    delta = rate.amountPerTick * count;
+                    float delta;
+                    if (rate.amountPerTick > 0f)
+                        // Production is scaled by both staffing and productivity.
+                        delta = rate.amountPerTick * count * staffingRatio * _productivity;
+                    else
+                        // Consumption is always full — buildings still consume even when understaffed.
+                        delta = rate.amountPerTick * count;
 
-                float newValue = current + delta;
-                if (rate.resource.HasCap) newValue = Mathf.Min(newValue, rate.resource.cap);
-                newValue = Mathf.Max(0f, newValue);
+                    float newValue = current + delta;
+                    if (rate.resource.HasCap) newValue = Mathf.Min(newValue, rate.resource.cap);
+                    newValue = Mathf.Max(0f, newValue);
 
-                _resources[rate.resource] = Mathf.Round(newValue * 100f) / 100f;
-                OnResourceChanged?.Invoke(rate.resource, _resources[rate.resource]);
+                    _resources[rate.resource] = Mathf.Round(newValue * 100f) / 100f;
+                    OnResourceChanged?.Invoke(rate.resource, _resources[rate.resource]);
+                }
             }
         }
 
-        // Essential resource deficit → population loss.
+        // Per-person consumption and essential deficit handling.
         if (peopleResource != null)
         {
+            float population = GetResource(peopleResource);
+
+            if (foodResource != null && population > 0f)
+                ModifyResource(foodResource, -foodPerPersonPerTick * population);
+            if (waterResource != null && population > 0f)
+                ModifyResource(waterResource, -waterPerPersonPerTick * population);
+
             int essentialDeficits = 0;
             foreach (var (resource, amount) in _resources)
             {
@@ -155,18 +191,21 @@ public class ProductionManager : MonoBehaviour
         }
 
         // Productivity-type resource surplus/deficit → shift productivity.
-        float productivityDelta = 0f;
-        foreach (var (resource, amount) in _resources)
+        if (_productivityEnabled)
         {
-            if (resource.resourceType != ResourceType.Productivity) continue;
-            productivityDelta += amount > 0f ? productivityShiftPerTick : -productivityShiftPerTick;
-        }
+            float productivityDelta = 0f;
+            foreach (var (resource, amount) in _resources)
+            {
+                if (resource.resourceType != ResourceType.Productivity) continue;
+                productivityDelta += amount > 0f ? productivityShiftPerTick : -productivityShiftPerTick;
+            }
 
-        if (productivityDelta != 0f)
-        {
-            _productivity = Mathf.Clamp(_productivity + productivityDelta, ProductivityMin, ProductivityMax);
-            _productivity = Mathf.Round(_productivity * 100f) / 100f;
-            OnProductivityChanged?.Invoke(_productivity);
+            if (productivityDelta != 0f)
+            {
+                _productivity = Mathf.Clamp(_productivity + productivityDelta, ProductivityMin, ProductivityMax);
+                _productivity = Mathf.Round(_productivity * 100f) / 100f;
+                OnProductivityChanged?.Invoke(_productivity);
+            }
         }
     }
 }

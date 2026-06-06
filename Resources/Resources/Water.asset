@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   resourceName: Water
-  resourceType: 0
+  resourceType: 1
   startingAmount: 100
   cap: -1

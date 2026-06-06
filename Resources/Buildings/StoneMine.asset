@@ -10,21 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040f007c53c10c64a84cd7e6ffadce0c, type: 3}
-  m_Name: BasicHouse
+  m_Name: StoneMine
   m_EditorClassIdentifier: 
-  buildingName: Basic House
+  buildingName: Stone Mine
   landCost: 1
   matterCost: 500
-  buildCosts:
-  - resource: {fileID: 11400000, guid: 8c973deb797ea3143b5dc61520b8946d, type: 2}
-    amount: 100
-    refundOnDemolish: 1
-  - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
-    amount: 100
-    refundOnDemolish: 1
-  peopleCost: 0
-  housingCapacity: 50
+  buildCosts: []
+  peopleCost: 5
+  housingCapacity: 0
   productionRates:
-  - resource: {fileID: 11400000, guid: 774d55f6368672d43839f4e74c4cfd70, type: 2}
-    amountPerTick: 1
+  - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
+    amountPerTick: 10
   unlockConditions: []

@@ -19,4 +19,6 @@ public class ResourceDefinition : ScriptableObject
     public float cap = -1f;
 
     public bool HasCap => cap >= 0f;
+    public Color textColor = Color.white;
+    public int tier = 0; // For UI sorting. Sorting within tiers is alphabetical
 }
