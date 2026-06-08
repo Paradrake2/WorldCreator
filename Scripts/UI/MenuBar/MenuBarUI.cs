@@ -11,6 +11,8 @@ public class MenuBarUI : MonoBehaviour
     [SerializeField] private GameObject creationScreen;
     [SerializeField] private GameObject researchScreen;
     [SerializeField] private GameObject settingsScreen;
+    [SerializeField] private BuildingListUI buildingListUI;
+    [SerializeField] private ResourceListUI resourceListUI;
 
     private void OnEnable()
     {
@@ -44,6 +46,7 @@ public class MenuBarUI : MonoBehaviour
         if(creationScreen != null) creationScreen.SetActive(true);
         if(researchScreen != null) researchScreen.SetActive(false);
         if(settingsScreen != null) settingsScreen.SetActive(false);
+        if(buildingListUI != null) buildingListUI.PopulateBuildingList();
     }
     public void ShowResearchScreen()
     {

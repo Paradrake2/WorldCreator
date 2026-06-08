@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceName: Lumber
   resourceType: 0
-  startingAmount: 0
+  startingAmount: 100
   cap: -1
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  tier: 0
+  showFromStart: 1

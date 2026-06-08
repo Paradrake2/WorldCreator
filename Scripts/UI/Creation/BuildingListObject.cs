@@ -28,6 +28,20 @@ public class BuildingListObject : MonoBehaviour, IPointerEnterHandler, IPointerE
         buildingDefinition = definition;
         buildingManager = manager;
         buildingNameText.text = definition.buildingName;
+        buildingManager.OnBuildingsChanged += UpdateCount;
+        UpdateCount();
+    }
+
+    void OnDestroy()
+    {
+        if (buildingManager != null)
+            buildingManager.OnBuildingsChanged -= UpdateCount;
+    }
+
+    private void UpdateCount()
+    {
+        if (buildingCountText != null)
+            buildingCountText.text = buildingManager.GetCount(buildingDefinition).ToString();
     }
 
     public void OnBuildButtonPressed()

@@ -30,7 +30,7 @@ public class BuildingUnlockManager : MonoBehaviour
             else
                 _locked.Add(building);
         }
-
+        Debug.Log($"Initially unlocked buildings: {string.Join(", ", _unlocked)}");
         productionManager.OnResourceChanged += OnResourceChanged;
         ResourceManager.OnMatterChanged += OnMatterChanged;
     }

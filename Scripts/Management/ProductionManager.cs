@@ -34,6 +34,10 @@ public class ProductionManager : MonoBehaviour
     private bool _productivityEnabled = false;
     private bool _productionHalted = false;
 
+    [Header("Resources")]
+    [Tooltip("Every ResourceDefinition SO in the game. Used to initialize starting amounts.")]
+    [SerializeField] private ResourceDefinition[] allResources;
+
     private readonly Dictionary<ResourceDefinition, float> _resources = new();
     private float _timer = 0f;
     private int _populationCap = 0;
@@ -52,6 +56,20 @@ public class ProductionManager : MonoBehaviour
     {
         if (buildingManager == null) buildingManager = FindAnyObjectByType<BuildingManager>();
         buildingManager.OnBuildingsChanged += RecalculatePopulationCap;
+
+        // Seed resources from their startingAmount values.
+        if (allResources != null)
+        {
+            foreach (var res in allResources)
+            {
+                if (res != null && res.startingAmount > 0f)
+                {
+                    _resources[res] = res.startingAmount;
+                    OnResourceChanged?.Invoke(res, res.startingAmount);
+                }
+            }
+        }
+
         RecalculatePopulationCap();
     }
 
@@ -60,7 +78,10 @@ public class ProductionManager : MonoBehaviour
         if (buildingManager != null)
             buildingManager.OnBuildingsChanged -= RecalculatePopulationCap;
     }
-
+    public Dictionary<ResourceDefinition, float> GetAllResources()
+    {
+        return new Dictionary<ResourceDefinition, float>(_resources);
+    }
     private void RecalculatePopulationCap()
     {
         int newCap = 0;
@@ -68,8 +89,9 @@ public class ProductionManager : MonoBehaviour
             newCap += building.housingCapacity * count;
         _populationCap = newCap;
 
-        // If population exceeds the new cap, clamp it down immediately.
-        if (peopleResource != null)
+        // Only clamp population down if there is at least some housing built.
+        // A cap of 0 means no housing exists yet, not that nobody is allowed to live.
+        if (peopleResource != null && _populationCap > 0)
         {
             float currentPeople = GetResource(peopleResource);
             if (currentPeople > _populationCap)

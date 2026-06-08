@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceName: People
   resourceType: 0
-  startingAmount: 50
+  startingAmount: 100
   cap: -1
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  tier: 0
+  showFromStart: 1

@@ -6,9 +6,12 @@ public class LandManager : MonoBehaviour
     public event Action<int, int> OnLandChanged; // (total, used)
 
     [SerializeField] private ResourceManager resourceManager;
-    [SerializeField] private int landPerPurchase = 10;
-    [SerializeField] private int landBaseCost = 50;
-    [SerializeField] private float landCostMultiplier = 1.5f;
+    [Tooltip("Land the player starts with.")]
+    [SerializeField] private int startingLand = 5;
+    [Tooltip("Matter cost for the first land purchase.")]
+    [SerializeField] private int landBaseCost = 500;
+    [Tooltip("Additional matter cost added per subsequent purchase.")]
+    [SerializeField] private int landCostIncrement = 100;
 
     private int _totalLand = 0;
     private int _usedLand = 0;
@@ -21,6 +24,7 @@ public class LandManager : MonoBehaviour
     void Start()
     {
         if (resourceManager == null) resourceManager = FindAnyObjectByType<ResourceManager>();
+        _totalLand = startingLand;
         OnLandChanged?.Invoke(_totalLand, _usedLand);
     }
 
@@ -29,12 +33,15 @@ public class LandManager : MonoBehaviour
         int cost = GetNextLandCost();
         if (resourceManager.GetMatter() < cost) return false;
         resourceManager.RemoveMatter(cost);
-        _totalLand += landPerPurchase;
+        _totalLand++;
         _purchaseCount++;
         OnLandChanged?.Invoke(_totalLand, _usedLand);
         return true;
     }
-
+    public void BuyLand() // so UI button can call 
+    {
+        TryBuyLand();
+    }
     public bool TryUseLand(int amount)
     {
         if (_usedLand + amount > _totalLand) return false;
@@ -51,6 +58,6 @@ public class LandManager : MonoBehaviour
 
     public int GetNextLandCost()
     {
-        return Mathf.RoundToInt(landBaseCost * Mathf.Pow(landCostMultiplier, _purchaseCount));
+        return landBaseCost + landCostIncrement * _purchaseCount;
     }
 }

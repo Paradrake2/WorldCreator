@@ -21,4 +21,6 @@ public class ResourceDefinition : ScriptableObject
     public bool HasCap => cap >= 0f;
     public Color textColor = Color.white;
     public int tier = 0; // For UI sorting. Sorting within tiers is alphabetical
+    [Tooltip("If true, this resource's row is visible in the UI from the start of the game.")]
+    public bool showFromStart = false;
 }

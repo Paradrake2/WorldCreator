@@ -10,10 +10,12 @@ public class BuildingListUI : MonoBehaviour
     public void PopulateBuildingList()
     {
         ClearBuildingList();
-        HashSet<BuildingDefinition> unlockedBuildings = new HashSet<BuildingDefinition>();
         foreach (var building in buildingUnlockManager.GetUnlockedBuildings())
         {
-            unlockedBuildings.Add(building);
+            var obj = Instantiate(buildingListItemPrefab, buildingListContainer);
+            var listObj = obj.GetComponent<BuildingListObject>();
+            if (listObj != null)
+                listObj.Initialize(building, buildingManager);
         }
     }
     private void ClearBuildingList()
@@ -27,7 +29,7 @@ public class BuildingListUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        PopulateBuildingList();
     }
 
     // Update is called once per frame
