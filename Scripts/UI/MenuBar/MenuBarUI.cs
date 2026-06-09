@@ -16,7 +16,6 @@ public class MenuBarUI : MonoBehaviour
 
     private void OnEnable()
     {
-        // Subscribe to events if needed
         ScreenManager.creationScreenUnlocked += UnlockCreationScreen;
         ScreenManager.researchScreenUnlocked += UnlockResearchScreen;
     }
