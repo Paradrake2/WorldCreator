@@ -33,6 +33,7 @@ public class ProductionManager : MonoBehaviour
     private float _productivity = 1f;
     private bool _productivityEnabled = false;
     private bool _productionHalted = false;
+    private bool _consumptionEnabled = false;
 
     [Header("Resources")]
     [Tooltip("Every ResourceDefinition SO in the game. Used to initialize starting amounts.")]
@@ -50,6 +51,11 @@ public class ProductionManager : MonoBehaviour
     public void EnableProductivity()
     {
         _productivityEnabled = true;
+    }
+
+    public void EnableConsumption()
+    {
+        _consumptionEnabled = true;
     }
 
     void Start()
@@ -81,6 +87,15 @@ public class ProductionManager : MonoBehaviour
     public Dictionary<ResourceDefinition, float> GetAllResources()
     {
         return new Dictionary<ResourceDefinition, float>(_resources);
+    }
+    public int GetResourceCount()
+    {
+        return _resources.Count;
+    }
+    public int GetSpecificResourceCount(ResourceDefinition resource)
+    {
+        _resources.TryGetValue(resource, out float value);
+        return Mathf.RoundToInt(value);
     }
     private void RecalculatePopulationCap()
     {
@@ -193,7 +208,7 @@ public class ProductionManager : MonoBehaviour
         }
 
         // Per-person consumption and essential deficit handling.
-        if (peopleResource != null)
+        if (_consumptionEnabled && peopleResource != null)
         {
             float population = GetResource(peopleResource);
 

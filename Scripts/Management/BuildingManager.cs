@@ -13,6 +13,10 @@ public class BuildingManager : MonoBehaviour
     private readonly Dictionary<BuildingDefinition, int> _buildings = new();
 
     public IReadOnlyDictionary<BuildingDefinition, int> Buildings => _buildings;
+    public CostPanel costPanel;
+    public ProductionManager ProductionManager => productionManager;
+    public ResourceManager ResourceManager => resourceManager;
+    public LandManager LandManager => landManager;
 
     void Start()
     {
@@ -20,7 +24,6 @@ public class BuildingManager : MonoBehaviour
         if (landManager == null) landManager = FindAnyObjectByType<LandManager>();
         if (productionManager == null) productionManager = FindAnyObjectByType<ProductionManager>();
     }
-
     public bool TryBuild(BuildingDefinition building)
     {
         if (resourceManager.GetMatter() < building.matterCost) return false;

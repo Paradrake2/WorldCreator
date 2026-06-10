@@ -9,19 +9,17 @@ public class BuildingListObject : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     [SerializeField] private BuildingDefinition buildingDefinition;
     [SerializeField] private BuildingManager buildingManager;
-    [SerializeField] private GameObject hoverInfoPanel;
-    [SerializeField] private Vector2 hoverInfoOffset = new Vector2(10f, -10f);
+    [SerializeField] private BuildButton bb1;
+    [SerializeField] private BuildButton bb10;
+    [SerializeField] private BuildButton bb100;
+    [SerializeField] private BuildButton bbMax;
 
-    private Coroutine _hoverCoroutine;
-    private Vector2 _mousePositionAtHover;
     private Canvas _parentCanvas;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _parentCanvas = GetComponentInParent<Canvas>();
-        if (hoverInfoPanel != null)
-            hoverInfoPanel.SetActive(false);
     }
     public void Initialize(BuildingDefinition definition, BuildingManager manager)
     {
@@ -29,6 +27,10 @@ public class BuildingListObject : MonoBehaviour, IPointerEnterHandler, IPointerE
         buildingManager = manager;
         buildingNameText.text = definition.buildingName;
         buildingManager.OnBuildingsChanged += UpdateCount;
+        bb1.Initialize(definition, manager);
+        bb10.Initialize(definition, manager);
+        bb100.Initialize(definition, manager);
+        bbMax.Initialize(definition, manager);
         UpdateCount();
     }
 
@@ -118,38 +120,13 @@ public class BuildingListObject : MonoBehaviour, IPointerEnterHandler, IPointerE
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _mousePositionAtHover = eventData.position;
-        _hoverCoroutine = StartCoroutine(ShowPanelAfterDelay());
+        buildingManager.costPanel.UpdateCostText(buildingDefinition);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (_hoverCoroutine != null)
-        {
-            StopCoroutine(_hoverCoroutine);
-            _hoverCoroutine = null;
-        }
-        if (hoverInfoPanel != null)
-            hoverInfoPanel.SetActive(false);
+        buildingManager.costPanel.UpdateCostText(null);
     }
 
-    private System.Collections.IEnumerator ShowPanelAfterDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        if (hoverInfoPanel == null) yield break;
 
-        RectTransform panelRect = hoverInfoPanel.GetComponent<RectTransform>();
-        if (panelRect != null && _parentCanvas != null)
-        {
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                _parentCanvas.GetComponent<RectTransform>(),
-                _mousePositionAtHover,
-                _parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : _parentCanvas.worldCamera,
-                out Vector2 localPoint
-            );
-            panelRect.anchoredPosition = localPoint + hoverInfoOffset;
-        }
-
-        hoverInfoPanel.SetActive(true);
-    }
 }

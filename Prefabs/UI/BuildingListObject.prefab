@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 5760727570041359887}
   - component: {fileID: 2695034660996240257}
   - component: {fileID: 1449620746439843801}
+  - component: {fileID: 7542894445415372028}
   m_Layer: 5
   m_Name: BuildOneButton
   m_TagString: Untagged
@@ -541,6 +542,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7542894445415372028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2654071434989012105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076b8626af2c9064aa6d4a896606c8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingDefinition: {fileID: 0}
+  buildingManager: {fileID: 0}
+  amountToBuild: 1
+  isMax: 0
 --- !u!1 &2783995029253711880
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +975,7 @@ GameObject:
   - component: {fileID: 2182792870591494156}
   - component: {fileID: 5989973444827935004}
   - component: {fileID: 7551310828179401789}
+  - component: {fileID: 4986834019823015686}
   m_Layer: 5
   m_Name: BuildTenButton
   m_TagString: Untagged
@@ -1079,6 +1097,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4986834019823015686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668870739762508024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076b8626af2c9064aa6d4a896606c8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingDefinition: {fileID: 0}
+  buildingManager: {fileID: 0}
+  amountToBuild: 10
+  isMax: 0
 --- !u!1 &6773832749675965534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1125,7 @@ GameObject:
   - component: {fileID: 3574597327522736677}
   - component: {fileID: 7052158448691584532}
   - component: {fileID: 3410511504648653161}
+  - component: {fileID: 135206520738834203}
   m_Layer: 5
   m_Name: BuildHundredButton
   m_TagString: Untagged
@@ -1212,6 +1247,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &135206520738834203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6773832749675965534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076b8626af2c9064aa6d4a896606c8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingDefinition: {fileID: 0}
+  buildingManager: {fileID: 0}
+  amountToBuild: 100
+  isMax: 0
 --- !u!1 &7070112012010603891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,6 +1411,7 @@ GameObject:
   - component: {fileID: 6710274977616252220}
   - component: {fileID: 7254426459528061795}
   - component: {fileID: 5304926164752870815}
+  - component: {fileID: 1355102403168209037}
   m_Layer: 5
   m_Name: BuildMaxButton
   m_TagString: Untagged
@@ -1481,6 +1533,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1355102403168209037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378693078948412318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076b8626af2c9064aa6d4a896606c8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingDefinition: {fileID: 0}
+  buildingManager: {fileID: 0}
+  amountToBuild: 1
+  isMax: 1
 --- !u!1 &8793625176393058612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,8 +1608,10 @@ MonoBehaviour:
   buildingCountText: {fileID: 680978246507656168}
   buildingDefinition: {fileID: 0}
   buildingManager: {fileID: 0}
-  hoverInfoPanel: {fileID: 0}
-  hoverInfoOffset: {x: 10, y: -10}
+  bb1: {fileID: 7542894445415372028}
+  bb10: {fileID: 4986834019823015686}
+  bb100: {fileID: 135206520738834203}
+  bbMax: {fileID: 1355102403168209037}
 --- !u!1 &8852162913895256327
 GameObject:
   m_ObjectHideFlags: 0

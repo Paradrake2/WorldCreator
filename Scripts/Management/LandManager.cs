@@ -42,6 +42,7 @@ public class LandManager : MonoBehaviour
     {
         TryBuyLand();
     }
+
     public bool TryUseLand(int amount)
     {
         if (_usedLand + amount > _totalLand) return false;
