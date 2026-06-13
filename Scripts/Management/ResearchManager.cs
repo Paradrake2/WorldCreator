@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+
+// there should only ever be one research manager
 public class ResearchManager : MonoBehaviour
 {
     //public static event Action OnResearchScreenUnlocked;

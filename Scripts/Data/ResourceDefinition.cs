@@ -23,4 +23,6 @@ public class ResourceDefinition : ScriptableObject
     public int tier = 0; // For UI sorting. Sorting within tiers is alphabetical
     [Tooltip("If true, this resource's row is visible in the UI from the start of the game.")]
     public bool showFromStart = false;
+    public float tradeInputValue = 1f; // how much 1 unit of this resource is worth when used to convert to another resource
+    public float tradeOutputValue = 5f; // how many units of trade value are required to make one unit of this resource
 }
