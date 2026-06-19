@@ -45,8 +45,9 @@ public class BuildingDefinition : ScriptableObject
     [Header("Unlock Conditions")]
     [Tooltip("All conditions must be met to unlock this building. Leave empty to unlock from the start.")]
     public UnlockCondition[] unlockConditions;
-
+    [SerializeField] private bool unlockedByResearch = false;
     public bool IsUnlockedFromStart => unlockConditions == null || unlockConditions.Length == 0;
+    public bool IsUnlockedByResearch => unlockedByResearch;
     public Color textColor = Color.white;
     public int sortOrder = 0; // For UI sorting. Sorting within orders is alphabetical
 }

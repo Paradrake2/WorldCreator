@@ -39,6 +39,23 @@ public class ProductionManager : MonoBehaviour
     [Tooltip("Every ResourceDefinition SO in the game. Used to initialize starting amounts.")]
     [SerializeField] private ResourceDefinition[] allResources;
 
+#if UNITY_EDITOR
+    [ContextMenu("Find All Resources")]
+    private void FindAllResources()
+    {
+        var guids = UnityEditor.AssetDatabase.FindAssets("t:ResourceDefinition");
+        var results = new ResourceDefinition[guids.Length];
+        for (int i = 0; i < guids.Length; i++)
+        {
+            string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]);
+            results[i] = UnityEditor.AssetDatabase.LoadAssetAtPath<ResourceDefinition>(path);
+        }
+        allResources = results;
+        UnityEditor.EditorUtility.SetDirty(this);
+        Debug.Log($"[ProductionManager] Found {results.Length} ResourceDefinition assets.");
+    }
+#endif
+
     private readonly Dictionary<ResourceDefinition, float> _resources = new();
     private float _timer = 0f;
     private int _populationCap = 0;

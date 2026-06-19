@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60d1a7ecc8881843b4c7dceef03088e, type: 3}
-  m_Name: TradeMechanicResearchNode
+  m_Script: {fileID: 11500000, guid: 559d958dd242b1f41ad04c00a22738ae, type: 3}
+  m_Name: Creation
   m_EditorClassIdentifier: 
-  nodeName: TradeMechanic
-  isUnlocked: 1
-  prerequisites: []
-  cost:
-    matterCost: 0
-    resourceCosts: []
+  researchCategories:
+  - {fileID: 11400000, guid: f3f8b7f1c2df1fa4b911819d41841bca, type: 2}

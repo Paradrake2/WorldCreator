@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594c2f73fda140c41b10305d232dbe88, type: 3}
+  m_Name: ImprovedStoneMine
+  m_EditorClassIdentifier: 
+  nodeName: ImprovedStoneMine
+  isUnlocked: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 9d9356bb14845b046bf6127dffbb33b5, type: 2}
+  cost:
+    matterCost: 5000
+    resourceCosts:
+    - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
+      amount: 500
+  isBaseNode: 0
+  buildingToUnlock: {fileID: 11400000, guid: cd7823d637f019d4d8801ad8139dc5cd, type: 2}

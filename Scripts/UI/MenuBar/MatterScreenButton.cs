@@ -1,18 +1,12 @@
 using UnityEngine;
 
-public class MatterScreenButton : MonoBehaviour
+public class MatterScreenButton : MenuBarButton
 {
-    [SerializeField] private MenuBarUI menuBarUI;
-    [SerializeField] private bool isInteractable = true;
-    public void OnButtonClicked()
+    public override void OnButtonClicked()
     {
         if(menuBarUI != null && isInteractable)
         {
             menuBarUI.ShowMatterScreen();
         }
-    }
-    public void SetInteractable(bool interactable)
-    {
-        isInteractable = interactable;
     }
 }

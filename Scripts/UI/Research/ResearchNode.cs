@@ -9,6 +9,12 @@ public class ResearchNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private ResearchManager researchManager;
     public ResearchNodeData NodeData => nodeData;
     public bool IsUnlocked => isUnlocked;
+    public void Initialize(ResearchNodeData data, ResearchManager manager)
+    {
+        nodeData = data;
+        researchManager = manager;
+        nodeNameText.text = nodeData.NodeName;
+    }
     public void OnClick()
     {
         if (isUnlocked)
@@ -46,21 +52,5 @@ public class ResearchNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         // show tooltip with nodeData info like costs
         throw new System.NotImplementedException();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        nodeNameText.text = nodeData.NodeName;
-        if (researchManager == null)
-        {
-            researchManager = FindAnyObjectByType<ResearchManager>();
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

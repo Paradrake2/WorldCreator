@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60d1a7ecc8881843b4c7dceef03088e, type: 3}
-  m_Name: TradeMechanicResearchNode
+  m_Script: {fileID: 11500000, guid: 28aeab2c86919ff4a91163612057be78, type: 3}
+  m_Name: Copper
   m_EditorClassIdentifier: 
-  nodeName: TradeMechanic
-  isUnlocked: 1
-  prerequisites: []
-  cost:
-    matterCost: 0
-    resourceCosts: []
+  resourceName: Copper
+  resourceType: 0
+  startingAmount: 0
+  cap: -1
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  tier: 0
+  showFromStart: 0
+  tradeInputValue: 1
+  tradeOutputValue: 5

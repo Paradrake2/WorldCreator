@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingUnlockManager : MonoBehaviour
 {
-    public event Action<BuildingDefinition> OnBuildingUnlocked;
+    public static event Action<BuildingDefinition> OnBuildingUnlocked;
 
     [SerializeField] private ProductionManager productionManager;
     [SerializeField] private ResourceManager resourceManager;
@@ -25,7 +25,7 @@ public class BuildingUnlockManager : MonoBehaviour
 
         foreach (var building in allBuildings)
         {
-            if (building.IsUnlockedFromStart)
+            if (building.IsUnlockedFromStart && !building.IsUnlockedByResearch)
                 Unlock(building);
             else
                 _locked.Add(building);
@@ -76,7 +76,7 @@ public class BuildingUnlockManager : MonoBehaviour
         return true;
     }
 
-    private void Unlock(BuildingDefinition building)
+    public void Unlock(BuildingDefinition building)
     {
         _locked.Remove(building);
         _unlocked.Add(building);

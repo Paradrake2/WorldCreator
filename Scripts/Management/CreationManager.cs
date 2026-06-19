@@ -11,7 +11,7 @@ public class CreationManager : MonoBehaviour
     void Start()
     {
         resourceManager.RegisterMatterThreshold(10, SpawnMatterCreator);
-        resourceManager.RegisterMatterThreshold(5000, UnlockSecondMatterCreator);
+        resourceManager.RegisterMatterThreshold(55000, UnlockSecondMatterCreator);
         resourceManager.RegisterMatterThreshold(100000, UnlockThirdMatterCreator);
     }
 

@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class CreationScreenButton : MenuBarButton
+public class ResearchScreenButton : MenuBarButton
 {
     public override void OnButtonClicked()
     {
         if(menuBarUI != null && isInteractable)
         {
-            menuBarUI.ShowCreationScreen();
+            menuBarUI.ShowResearchScreen();
         }
     }
 }
