@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594c2f73fda140c41b10305d232dbe88, type: 3}
+  m_Name: StoneMine
+  m_EditorClassIdentifier: 
+  nodeName: Stone Mine
+  isUnlocked: 0
+  prerequisites: []
+  buildingPrerequisites:
+  - {fileID: 11400000, guid: 6afbf25099c379041946feb2ea982795, type: 2}
+  cost:
+    matterCost: 1000
+    resourceCosts:
+    - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
+      amount: 200
+  isBaseNode: 0
+  buildingToUnlock: {fileID: 11400000, guid: b48b073a85166c941b2e1f1e0bae8962, type: 2}

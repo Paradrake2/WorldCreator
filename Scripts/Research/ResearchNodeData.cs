@@ -24,11 +24,14 @@ public abstract class ResearchNodeData : ScriptableObject, IResearchNodeUnlockab
     [SerializeField] private string nodeName;
     [SerializeField] private bool isUnlocked = false;
     [SerializeField] private ResearchNodeData[] prerequisites;
+    [Tooltip("Buildings that must be unlocked before this node can be researched.")]
+    [SerializeField] private BuildingDefinition[] buildingPrerequisites;
     [SerializeField] private NodeCost cost;
     [SerializeField] private bool isBaseNode = false; // when algorithm is generating category, this will be the starting node
     public string NodeName => nodeName;
     public bool IsUnlocked => isUnlocked;
     public ResearchNodeData[] Prerequisites => prerequisites;
+    public BuildingDefinition[] BuildingPrerequisites => buildingPrerequisites;
     public NodeCost Cost => cost;
     public bool IsBaseNode => isBaseNode;
     public abstract void OnUnlock();

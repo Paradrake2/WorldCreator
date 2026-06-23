@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040f007c53c10c64a84cd7e6ffadce0c, type: 3}
-  m_Name: StoneMine
+  m_Name: BasicCopperMine
   m_EditorClassIdentifier: 
-  buildingName: Stone Mine
+  buildingName: Basic Copper Mine
   landCost: 1
-  matterCost: 750
+  matterCost: 500
   buildCosts:
-  - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
+  - resource: {fileID: 11400000, guid: 8c973deb797ea3143b5dc61520b8946d, type: 2}
     amount: 100
     refundOnDemolish: 1
-  - resource: {fileID: 11400000, guid: 8c973deb797ea3143b5dc61520b8946d, type: 2}
+  - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
     amount: 100
     refundOnDemolish: 1
   peopleCost: 10
   housingCapacity: 0
   productionRates:
+  - resource: {fileID: 11400000, guid: dde63ee5cc4255a4299170398a271952, type: 2}
+    amountPerTick: 10
+  unlockConditions:
   - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
-    amountPerTick: 25
-  unlockConditions: []
-  unlockedByResearch: 1
+    threshold: 250
+  unlockedByResearch: 0
   textColor: {r: 1, g: 1, b: 1, a: 1}
   sortOrder: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040f007c53c10c64a84cd7e6ffadce0c, type: 3}
   m_Name: BasicEntertainmentHall
   m_EditorClassIdentifier: 
-  buildingName: BasicEntertainmentHall
+  buildingName: Basic Entertainment Hall
   landCost: 1
   matterCost: 750
   buildCosts:
@@ -23,13 +23,14 @@ MonoBehaviour:
     amount: 150
     refundOnDemolish: 1
   - resource: {fileID: 11400000, guid: 2171c5b59e86c6f4eb970d2b815abc22, type: 2}
-    amount: 50
+    amount: 200
     refundOnDemolish: 1
   peopleCost: 15
   housingCapacity: 0
   productionRates:
   - resource: {fileID: 11400000, guid: 774d55f6368672d43839f4e74c4cfd70, type: 2}
-    amountPerTick: 150
-  unlockConditions:
-  - resource: {fileID: 11400000, guid: 2171c5b59e86c6f4eb970d2b815abc22, type: 2}
-    threshold: 1
+    amountPerTick: 50
+  unlockConditions: []
+  unlockedByResearch: 1
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  sortOrder: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040f007c53c10c64a84cd7e6ffadce0c, type: 3}
   m_Name: BasicFarm
   m_EditorClassIdentifier: 
-  buildingName: BasicFarm
+  buildingName: Basic Farm
   landCost: 1
   matterCost: 100
   buildCosts: []
@@ -24,3 +24,6 @@ MonoBehaviour:
   - resource: {fileID: 11400000, guid: 9566f9c5fa027884483a48b3b9fd6d47, type: 2}
     amountPerTick: -2
   unlockConditions: []
+  unlockedByResearch: 0
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  sortOrder: 0

@@ -10,23 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040f007c53c10c64a84cd7e6ffadce0c, type: 3}
-  m_Name: StoneMine
+  m_Name: ImprovedIronMine
   m_EditorClassIdentifier: 
-  buildingName: Stone Mine
+  buildingName: Improved Iron Mine
   landCost: 1
-  matterCost: 750
+  matterCost: 2000
   buildCosts:
-  - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
-    amount: 100
+  - resource: {fileID: 11400000, guid: 2171c5b59e86c6f4eb970d2b815abc22, type: 2}
+    amount: 400
     refundOnDemolish: 1
   - resource: {fileID: 11400000, guid: 8c973deb797ea3143b5dc61520b8946d, type: 2}
-    amount: 100
+    amount: 400
     refundOnDemolish: 1
-  peopleCost: 10
+  - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
+    amount: 1000
+    refundOnDemolish: 1
+  peopleCost: 15
   housingCapacity: 0
   productionRates:
-  - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
-    amountPerTick: 25
+  - resource: {fileID: 11400000, guid: 2171c5b59e86c6f4eb970d2b815abc22, type: 2}
+    amountPerTick: 50
   unlockConditions: []
   unlockedByResearch: 1
   textColor: {r: 1, g: 1, b: 1, a: 1}

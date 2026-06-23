@@ -10,27 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040f007c53c10c64a84cd7e6ffadce0c, type: 3}
-  m_Name: IronMine
+  m_Name: BasicSteelSmelter
   m_EditorClassIdentifier: 
-  buildingName: Iron Mine
+  buildingName: Basic Steel Smelter
   landCost: 1
-  matterCost: 750
+  matterCost: 1000
   buildCosts:
   - resource: {fileID: 11400000, guid: 2171c5b59e86c6f4eb970d2b815abc22, type: 2}
-    amount: 100
-    refundOnDemolish: 1
-  - resource: {fileID: 11400000, guid: 17a1ca15900c6224d98608673a0ec11a, type: 2}
-    amount: 100
+    amount: 200
     refundOnDemolish: 1
   - resource: {fileID: 11400000, guid: 8c973deb797ea3143b5dc61520b8946d, type: 2}
+    amount: 150
+    refundOnDemolish: 1
+  - resource: {fileID: 11400000, guid: bd4eee6841a55f14596f29197dc1c2ed, type: 2}
     amount: 100
     refundOnDemolish: 1
-  peopleCost: 10
+  peopleCost: 0
   housingCapacity: 0
   productionRates:
+  - resource: {fileID: 11400000, guid: 69a71b4333acb8c4ea4feb3a0807c275, type: 2}
+    amountPerTick: 10
   - resource: {fileID: 11400000, guid: 2171c5b59e86c6f4eb970d2b815abc22, type: 2}
-    amountPerTick: 25
-  unlockConditions: []
-  unlockedByResearch: 1
+    amountPerTick: -15
+  - resource: {fileID: 11400000, guid: bd4eee6841a55f14596f29197dc1c2ed, type: 2}
+    amountPerTick: -15
+  unlockConditions:
+  - resource: {fileID: 11400000, guid: 2171c5b59e86c6f4eb970d2b815abc22, type: 2}
+    threshold: 1000
+  - resource: {fileID: 11400000, guid: bd4eee6841a55f14596f29197dc1c2ed, type: 2}
+    threshold: 1000
+  unlockedByResearch: 0
   textColor: {r: 1, g: 1, b: 1, a: 1}
   sortOrder: 0

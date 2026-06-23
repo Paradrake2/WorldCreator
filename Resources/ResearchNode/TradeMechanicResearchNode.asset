@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: TradeMechanicResearchNode
   m_EditorClassIdentifier: 
   nodeName: TradeMechanic
-  isUnlocked: 1
+  isUnlocked: 0
   prerequisites: []
+  buildingPrerequisites: []
   cost:
-    matterCost: 0
-    resourceCosts: []
+    matterCost: 5000
+    resourceCosts:
+    - resource: {fileID: 11400000, guid: ae606d1d36fa20547a80fdeeb23776ed, type: 2}
+      amount: 10
+  isBaseNode: 0

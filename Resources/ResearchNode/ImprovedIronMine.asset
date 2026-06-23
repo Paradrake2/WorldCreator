@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 594c2f73fda140c41b10305d232dbe88, type: 3}
-  m_Name: BasicStoneMine
+  m_Name: ImprovedIronMine
   m_EditorClassIdentifier: 
-  nodeName: Basic Stone Mine
+  nodeName: ImprovedIronMine
   isUnlocked: 0
   prerequisites: []
+  buildingPrerequisites:
+  - {fileID: 11400000, guid: f7e2cf055717c764395ec871b42af24e, type: 2}
   cost:
-    matterCost: 500
+    matterCost: 2500
     resourceCosts:
-    - resource: {fileID: 11400000, guid: 8c973deb797ea3143b5dc61520b8946d, type: 2}
-      amount: 25
+    - resource: {fileID: 11400000, guid: 2171c5b59e86c6f4eb970d2b815abc22, type: 2}
+      amount: 250
   isBaseNode: 0
-  buildingToUnlock: {fileID: 11400000, guid: 6afbf25099c379041946feb2ea982795, type: 2}
+  buildingToUnlock: {fileID: 11400000, guid: d56dfd310a5822548a5923a27622b138, type: 2}

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 559d958dd242b1f41ad04c00a22738ae, type: 3}
-  m_Name: Creation
+  m_Script: {fileID: 11500000, guid: 4216573d6fbf9dc4e9c540288b70dbcd, type: 3}
+  m_Name: Metal
   m_EditorClassIdentifier: 
-  researchCategories:
-  - {fileID: 11400000, guid: f3f8b7f1c2df1fa4b911819d41841bca, type: 2}
-  - {fileID: 11400000, guid: bf9efcb478c133d498ff64823b121135, type: 2}
+  categoryName: Metal
+  isUnlocked: 0
+  categoryTiers:
+  - nodesInTier:
+    - {fileID: 0}

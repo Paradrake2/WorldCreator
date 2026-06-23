@@ -31,6 +31,22 @@ public class ResearchNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 return;
             }
         }
+        // Check if building prerequisites are unlocked
+        if (nodeData.BuildingPrerequisites != null && nodeData.BuildingPrerequisites.Length > 0)
+        {
+            BuildingUnlockManager bum = FindAnyObjectByType<BuildingUnlockManager>();
+            if (bum != null)
+            {
+                foreach (var building in nodeData.BuildingPrerequisites)
+                {
+                    if (!bum.IsUnlocked(building))
+                    {
+                        Debug.Log("Cannot unlock " + nodeData.NodeName + ". Required building " + building.buildingName + " is not unlocked.");
+                        return;
+                    }
+                }
+            }
+        }
         // Check if player has enough resources
 
         // If all checks pass, unlock the node
